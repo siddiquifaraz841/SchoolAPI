@@ -44,5 +44,9 @@ namespace SchoolAPI.Data
         {
 
         }
+        public void secondFunction()
+        {
+
+        }
     }
 }
