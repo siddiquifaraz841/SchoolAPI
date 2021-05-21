@@ -39,5 +39,10 @@ namespace SchoolAPI.Data
         {
             return (_context.SaveChanges() >= 0);
         }
+
+        public void noaction()
+        {
+
+        }
     }
 }
