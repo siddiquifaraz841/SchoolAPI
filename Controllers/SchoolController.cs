@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using SchoolAPI.Data;
+using SchoolAPI.DTOs;
 using SchoolAPI.Models;
 using System;
 using System.Collections.Generic;
@@ -13,25 +15,27 @@ namespace SchoolAPI.Controllers
     public class SchoolController : ControllerBase
     {
         private readonly ISchoolRepo _repo;
+        private readonly IMapper _mapper;
 
-        public SchoolController(ISchoolRepo repo)
+        public SchoolController(ISchoolRepo repo, IMapper mapper)
         {
             _repo = repo;
+            _mapper = mapper;
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Course>> GetAllCoursesFromDb()
+        public async Task<ActionResult<IEnumerable<CourseReadDTO>>> GetAllCoursesFromDb()
         {
-            var result = _repo.GetAllCourses();
-            return Ok(result);
+            var result = await _repo.GetAllCourses();
+            return Ok(_mapper.Map<IEnumerable<CourseReadDTO>>(result));
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Course> GetCourseByIdFromDb(int id)
+        public ActionResult<CourseReadDTO> GetCourseByIdFromDb(int id)
         {
             var result = _repo.GetCourseById(id);
             if (result != null)
-                return Ok(result);
+                return Ok(_mapper.Map<CourseReadDTO>(result));
             else
                 return NotFound();
         }

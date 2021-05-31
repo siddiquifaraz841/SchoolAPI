@@ -8,7 +8,7 @@ namespace SchoolAPI.Data
 {
     public interface ISchoolRepo
     {
-        IEnumerable<Course> GetAllCourses();
+        Task<IEnumerable<Course>> GetAllCourses();
 
         Course GetCourseById(int courseId);
 
