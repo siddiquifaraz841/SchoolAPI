@@ -1,4 +1,5 @@
-﻿using SchoolAPI.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using SchoolAPI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,9 +26,9 @@ namespace SchoolAPI.Data
             _context.Courses.Remove(obj);
         }
 
-        public IEnumerable<Course> GetAllCourses()
+        public async Task<IEnumerable<Course>> GetAllCourses()
         {
-            return _context.Courses.ToList();
+            return await _context.Courses.ToListAsync();
         }
 
         public Course GetCourseById(int courseId)
@@ -38,15 +39,6 @@ namespace SchoolAPI.Data
         public bool SaveChanges()
         {
             return (_context.SaveChanges() >= 0);
-        }
-
-        public void noaction()
-        {
-
-        }
-        public void secondFunction()
-        {
-
         }
     }
 }
