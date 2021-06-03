@@ -23,6 +23,10 @@ namespace SchoolAPI.Controllers
             _mapper = mapper;
         }
 
+        /// <summary>
+        /// Get all Person
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CourseReadDTO>>> GetAllCoursesFromDb()
         {
@@ -30,6 +34,17 @@ namespace SchoolAPI.Controllers
             return Ok(_mapper.Map<IEnumerable<CourseReadDTO>>(result));
         }
 
+        /// <summary>
+        /// Get a specific Person.
+        /// </summary>
+        /// <remarks>
+        /// Description
+        ///
+        ///     Get /api/Person/{id}
+        ///     This will return you the JSON Object
+        ///
+        /// </remarks>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public ActionResult<CourseReadDTO> GetCourseByIdFromDb(int id)
         {
