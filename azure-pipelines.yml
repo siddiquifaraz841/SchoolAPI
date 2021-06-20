@@ -53,6 +53,7 @@ stages:
             - task: AzureRmWebAppDeployment@4
               inputs:
                 ConnectionType: 'AzureRM'
+                azureSubscription: 'Pay-As-You-Go(0b5d6ca7-a144-4ae7-984c-1a76c902dffe)'
                 appType: 'webApp'
                 WebAppName: 'falcon'
                 packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
