@@ -57,3 +57,4 @@ stages:
                 appType: 'webApp'
                 WebAppName: 'falcon'
                 packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+              displayName: 'Deploy to Azure'
