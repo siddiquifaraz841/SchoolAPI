@@ -16,10 +16,12 @@ variables:
 
 steps:
 - task: NuGetToolInstaller@1
+  displayName: Install Nuget
 
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'
+  displayName: Restore Nuget
 
 - task: VSBuild@1
   inputs:
@@ -27,8 +29,10 @@ steps:
     msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactStagingDirectory)\SchoolAPI.zip" /p:DeployIisAppPath="Default Web Site"'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+  displayName: Build Solution
 
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'drop'
+  displayName: Publish Artifact
